@@ -13,6 +13,12 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
       - name: Login to GitHub Package Registry
         uses: docker/login-action@v1
         with:
@@ -28,13 +34,9 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "main" ] && VERSION=latest
           echo "::set-output name=tag::$VERSION"
+
       - name: Build docker image
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
-          dockerfile: r-base/Dockerfile
-          path: r-base
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: thepolicylab/r-base
-          tags: ${{ steps.maintag.outputs.tag }}
+          file: Dockerfile
+          tags: "khwilson/r-base:${{ steps.maintag.outputs.tag }}"
