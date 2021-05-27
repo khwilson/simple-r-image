@@ -39,4 +39,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: Dockerfile
-          tags: "khwilson/simple-r:${{ steps.maintag.outputs.tag }}"
+          tags: "ghcr.io/khwilson/simple-r:${{ steps.maintag.outputs.tag }}"
