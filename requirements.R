@@ -1,7 +1,7 @@
 #' This file installs the requirements of this repository.
 #' Note that the versions of the top-level packages have been
 #' pinned but it's possible that some dependencies are not
-install.packages('devtools', repos = "https://cloud.r-project.org")
+install.packages('devtools', repos = "https://cloud.r-project.org", Ncpus = 3)
 require(devtools)
 
 install_version(
@@ -49,5 +49,11 @@ install_version(
 install_version(
   "optparse",
   version = "1.6.6",
+  repos = "https://cloud.r-project.org"
+)
+
+install_version(
+  "did",
+  version = "2.0",
   repos = "https://cloud.r-project.org"
 )
