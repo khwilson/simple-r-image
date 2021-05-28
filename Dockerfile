@@ -15,4 +15,4 @@ RUN apt-get update && \
 RUN apt-get install -y r-base build-essential
 
 COPY requirements.R .
-#RUN Rscript --vanilla requirements.R
+RUN Rscript --vanilla requirements.R
