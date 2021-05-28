@@ -8,7 +8,7 @@ tar xzvf code.tar.gz
 
 outcome=$1
 # for outcome in num_minor_arrests num_use_of_force num_tickets total_sick_hours num_self_initiated num_non_traffic_self_initiated; do
-  for base_seed in 5000 7000 9000 11000 13000; do
+  for base_seed in 1000 3000 5000 7000 9000 11000 13000; do
     for idx in $(seq $2); do
       seed=$(( $base_seed + $idx * $NUM_PER_PROCESSOR ))
       echo "Running: $outcome with seed $seed on index $idx"
