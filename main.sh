@@ -13,11 +13,11 @@ outcome=$1
       seed=$(( $base_seed + $idx * $NUM_PER_PROCESSOR ))
       echo "Running: $outcome with seed $seed on index $idx"
 
-      docker run --rm -d -v "$(pwd)/MPD-NMAAHC:/code/MPD-NMAAHC" ghcr.io/khwilson/simple-r bash -c "cd /code/MPD-NMAAHC; Rscript --vanilla main_multi.R -c $outcome -o output_$outcome_$seed.csv -n $NUM_PER_PROCESSOR -s $seed"
+      docker run --rm -d -v "$(pwd)/MPD-NMAAHC:/code/MPD-NMAAHC" ghcr.io/khwilson/simple-r bash -c "cd /code/MPD-NMAAHC; Rscript --vanilla main_multi.R -c $outcome -o output_${outcome}_${seed}.csv -n $NUM_PER_PROCESSOR -s $seed"
     done
 
     while [ true ]; do
-      num_docker_seen=$(docker ps -a | wc -l)
+      num_docker_seen=$(docker ps | wc -l)
       if [ $num_docker_seen -eq "1" ]; then
         break
       else
